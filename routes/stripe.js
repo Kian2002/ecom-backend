@@ -1,7 +1,7 @@
 const express = require("express");
 const stripe = require("stripe")("sk_test_Hrs6SAopgFPF0bZXSN3f6ELN");
 
-const URL = "https://kian2002.github.io/E-commerce";
+const URL = "https://e-commerce-kian2002.vercel.app";
 
 const router = express.Router();
 
