@@ -22,14 +22,16 @@ router.get("/games", async (req, res) => {
       const image = game.background_image;
       const imageId = game.id;
 
-      cloudinary.uploader.upload(image, {
-        overwrite: true,
-        public_id: imageId,
-        transformation: [
-          { width: 500, quality: "100", fetch_format: "auto" },
-          { dpr: "auto", crop: "fit" },
-        ],
-      });
+      if (cloudinary.image(imageId).includes("not found")) {
+        cloudinary.uploader.upload(image, {
+          overwrite: true,
+          public_id: imageId,
+          transformation: [
+            { width: 500, quality: "100", fetch_format: "auto" },
+            { dpr: "auto", crop: "fit" },
+          ],
+        });
+      }
 
       const secure_url = cloudinary.url(imageId, {
         secure: true,
